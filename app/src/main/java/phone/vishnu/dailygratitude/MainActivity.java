@@ -150,7 +150,22 @@ public class MainActivity extends AppCompatActivity {
                     e1.requestFocus();
                 } else {
                     getSharedPreferences(getPackageName(), MODE_PRIVATE).edit().putString(PASSWORD_PREF, passWord).apply();
+                    Toast.makeText(MainActivity.this, "Password Changed", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setNeutralButton("Remove", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getSharedPreferences(getPackageName(), MODE_PRIVATE).edit().putString(PASSWORD_PREF, "NotSet!@#$%^&*()_+").apply();
+                Toast.makeText(MainActivity.this, "Password Removed", Toast.LENGTH_SHORT).show();
             }
         });
         builder.show();
