@@ -3,6 +3,7 @@ package phone.vishnu.dailygratitude;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAdapter extends ListAdapter<Gratitude, RecyclerViewAdapter.GratitudeHolder> {
+
+    private OnItemClickListener listener;
 
     public RecyclerViewAdapter() {
         super(new DiffUtil.ItemCallback<Gratitude>() {
@@ -34,6 +37,10 @@ public class RecyclerViewAdapter extends ListAdapter<Gratitude, RecyclerViewAdap
         return new GratitudeHolder(v);
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull GratitudeHolder holder, int position) {
 //        holder.setIsRecyclable(false);
@@ -44,14 +51,29 @@ public class RecyclerViewAdapter extends ListAdapter<Gratitude, RecyclerViewAdap
         holder.addedTV.setText(currentGratitude.getDateAdded());
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(Gratitude gratitude, int id);
+    }
+
     class GratitudeHolder extends RecyclerView.ViewHolder {
         private TextView titleTV, descriptionTV, addedTV;
+        private ImageView editIV;
 
         public GratitudeHolder(@NonNull View itemView) {
             super(itemView);
             titleTV = itemView.findViewById(R.id.todoTitle);
             descriptionTV = itemView.findViewById(R.id.todoDescription);
             addedTV = itemView.findViewById(R.id.addedTV);
+
+            editIV = itemView.findViewById(R.id.todoEditIV);
+            editIV.setColorFilter(R.color.colorAccent);
+            editIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null && getAdapterPosition() != RecyclerView.NO_POSITION)
+                        listener.onItemClick(getItem(getAdapterPosition()), v.getId());
+                }
+            });
         }
     }
 }

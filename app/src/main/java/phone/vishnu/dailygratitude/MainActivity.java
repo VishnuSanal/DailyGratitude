@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         adapter = new RecyclerViewAdapter();
+
+
         recyclerView.setAdapter(adapter);
 
         gratitudeViewModel = new ViewModelProvider(this,
