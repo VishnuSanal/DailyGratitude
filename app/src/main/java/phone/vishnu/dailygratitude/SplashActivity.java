@@ -34,9 +34,12 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                final String string = getSharedPreferences(getPackageName(), MODE_PRIVATE).getString(PASSWORD_PREF, "NotSet!@#$%^&*()_+");
+                final String string = getSharedPreferences(getPackageName(), MODE_PRIVATE).getString(PASSWORD_PREF, "NotSet!");
 
-                if (!("NotSet!@#$%^&*()_+").equals(string)) {
+                if (("NotSet!").equals(string)) {
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    SplashActivity.this.finish();
+                } else {
                     textView.setVisibility(View.GONE);
                     inputLayout.setVisibility(View.VISIBLE);
                     button.setVisibility(View.VISIBLE);
@@ -56,7 +59,6 @@ public class SplashActivity extends AppCompatActivity {
                                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                     SplashActivity.this.finish();
                                 } else {
-
                                     editText.setError("Wrong Password");
                                     editText.requestFocus();
                                 }
@@ -65,13 +67,8 @@ public class SplashActivity extends AppCompatActivity {
                         }
                     });
 
-                } else {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    SplashActivity.this.finish();
                 }
             }
         }, SPLASH_TIMEOUT * 1000);
-
     }
-
 }

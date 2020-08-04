@@ -1,14 +1,10 @@
 package phone.vishnu.dailygratitude;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,8 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -114,63 +108,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.id_password: {
-                showDialog();
+                getSupportFragmentManager().beginTransaction().add(R.id.container, PasswordFragment.newInstance()).addToBackStack(null).commit();
+                setFABVisibility(View.GONE);
                 break;
             }
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDialog() {
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(24, 12, 24, 12);
-
-        TextInputLayout t1 = new TextInputLayout(MainActivity.this);
-        t1.setHintAnimationEnabled(true);
-        t1.setLayoutParams(layoutParams);
-        t1.isHintEnabled();
-
-        final TextInputEditText e1 = new TextInputEditText(MainActivity.this);
-        e1.setHint("Password");
-        e1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        t1.addView(e1);
-
-        final androidx.appcompat.app.AlertDialog.Builder builder =
-                new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Enter the Password");
-        builder.setView(t1);
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                String passWord = e1.getText().toString().trim();
-
-                if (passWord.isEmpty()) {
-                    e1.setError("Please Enter A Value");
-                    e1.requestFocus();
-                } else {
-                    getSharedPreferences(getPackageName(), MODE_PRIVATE).edit().putString(PASSWORD_PREF, passWord).apply();
-                    Toast.makeText(MainActivity.this, "Password Changed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setNeutralButton("Remove", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                getSharedPreferences(getPackageName(), MODE_PRIVATE).edit().putString(PASSWORD_PREF, "NotSet!@#$%^&*()_+").apply();
-                Toast.makeText(MainActivity.this, "Password Removed", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.show();
+    public void setFABVisibility(int visibility) {
+        floatingActionButton.setVisibility(visibility);
     }
-
 }
