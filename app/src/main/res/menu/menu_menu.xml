@@ -4,6 +4,7 @@
 
     <item
         android:id="@+id/id_password"
-        android:title="@string/set_password"
+        android:title="@string/settings"
         app:showAsAction="never" />
+
 </menu>

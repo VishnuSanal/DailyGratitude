@@ -27,7 +27,6 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String PASSWORD_PREF = "passWordPreference";
     private final int ADD_REQUEST_CODE = 22;
     private GratitudeViewModel gratitudeViewModel;
     private RecyclerViewAdapter adapter;
