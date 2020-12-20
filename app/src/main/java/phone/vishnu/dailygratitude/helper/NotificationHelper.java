@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.helper;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.provider.Settings;
 
 import androidx.core.app.NotificationCompat;
+
+import phone.vishnu.dailygratitude.R;
+import phone.vishnu.dailygratitude.activity.MainActivity;
 
 public class NotificationHelper {
 

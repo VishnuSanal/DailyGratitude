@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
+
+import phone.vishnu.dailygratitude.R;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -75,5 +77,4 @@ public class AddActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }

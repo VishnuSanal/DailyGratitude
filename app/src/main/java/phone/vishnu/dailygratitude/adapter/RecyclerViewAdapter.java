@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import phone.vishnu.dailygratitude.R;
+import phone.vishnu.dailygratitude.model.Gratitude;
 
 public class RecyclerViewAdapter extends ListAdapter<Gratitude, RecyclerViewAdapter.GratitudeHolder> {
 
@@ -56,8 +59,10 @@ public class RecyclerViewAdapter extends ListAdapter<Gratitude, RecyclerViewAdap
     }
 
     class GratitudeHolder extends RecyclerView.ViewHolder {
-        private TextView titleTV, descriptionTV, addedTV;
-        private ImageView editIV;
+        private final TextView titleTV;
+        private final TextView descriptionTV;
+        private final TextView addedTV;
+        private final ImageView editIV;
 
         public GratitudeHolder(@NonNull View itemView) {
             super(itemView);

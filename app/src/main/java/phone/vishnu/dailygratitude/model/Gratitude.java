@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

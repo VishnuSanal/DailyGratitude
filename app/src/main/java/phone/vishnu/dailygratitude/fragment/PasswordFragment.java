@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.fragment;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -26,6 +26,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import phone.vishnu.dailygratitude.R;
+import phone.vishnu.dailygratitude.activity.MainActivity;
+import phone.vishnu.dailygratitude.reciever.NotificationReceiver;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;

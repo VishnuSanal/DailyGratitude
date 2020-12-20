@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import phone.vishnu.dailygratitude.R;
+import phone.vishnu.dailygratitude.adapter.RecyclerViewAdapter;
+import phone.vishnu.dailygratitude.fragment.PasswordFragment;
+import phone.vishnu.dailygratitude.model.Gratitude;
+import phone.vishnu.dailygratitude.viewmodel.GratitudeViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         adapter = new RecyclerViewAdapter();
-
 
         recyclerView.setAdapter(adapter);
 
@@ -99,18 +104,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_menu, menu);
+//        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.id_password: {
-                getSupportFragmentManager().beginTransaction().add(R.id.container, PasswordFragment.newInstance()).addToBackStack(null).commit();
-                setFABVisibility(View.GONE);
-                break;
-            }
+        if (item.getItemId() == R.id.id_password) {
+            getSupportFragmentManager().beginTransaction().add(R.id.container, PasswordFragment.newInstance()).addToBackStack(null).commit();
+            setFABVisibility(View.GONE);
         }
         return super.onOptionsItemSelected(item);
     }

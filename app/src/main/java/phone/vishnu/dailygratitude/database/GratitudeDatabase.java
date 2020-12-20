@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.database;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,12 +9,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import phone.vishnu.dailygratitude.dao.GratitudeDao;
+import phone.vishnu.dailygratitude.model.Gratitude;
+
 @Database(entities = {Gratitude.class}, version = 1)
 public abstract class GratitudeDatabase extends RoomDatabase {
 
     private static GratitudeDatabase instance;
 
-    private static RoomDatabase.Callback callback = new Callback() {
+    private static final RoomDatabase.Callback callback = new Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -38,7 +41,7 @@ public abstract class GratitudeDatabase extends RoomDatabase {
     public abstract GratitudeDao gratitudeDao();
 
     private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
-        private GratitudeDao shelveDao;
+        private final GratitudeDao shelveDao;
 
         public PopulateDBAsyncTask(GratitudeDatabase database) {
             this.shelveDao = database.gratitudeDao();

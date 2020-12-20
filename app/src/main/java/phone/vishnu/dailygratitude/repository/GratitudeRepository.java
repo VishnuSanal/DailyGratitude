@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -7,10 +7,14 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import phone.vishnu.dailygratitude.dao.GratitudeDao;
+import phone.vishnu.dailygratitude.database.GratitudeDatabase;
+import phone.vishnu.dailygratitude.model.Gratitude;
+
 public class GratitudeRepository {
 
-    private GratitudeDao gratitudeDao;
-    private LiveData<List<Gratitude>> gratitudeList;
+    private final GratitudeDao gratitudeDao;
+    private final LiveData<List<Gratitude>> gratitudeList;
 
     public GratitudeRepository(Application application) {
         GratitudeDatabase database = GratitudeDatabase.getInstance(application);
@@ -35,7 +39,7 @@ public class GratitudeRepository {
     }
 
     private static class InsertGratitudeAsyncTask extends AsyncTask<Gratitude, Void, Void> {
-        private GratitudeDao gratitudeDao;
+        private final GratitudeDao gratitudeDao;
 
         public InsertGratitudeAsyncTask(GratitudeDao gratitudeDao) {
             this.gratitudeDao = gratitudeDao;
@@ -49,7 +53,7 @@ public class GratitudeRepository {
     }
 
     private static class UpdateGratitudeAsyncTask extends AsyncTask<Gratitude, Void, Void> {
-        private GratitudeDao gratitudeDao;
+        private final GratitudeDao gratitudeDao;
 
         public UpdateGratitudeAsyncTask(GratitudeDao gratitudeDao) {
             this.gratitudeDao = gratitudeDao;
@@ -63,7 +67,7 @@ public class GratitudeRepository {
     }
 
     private static class DeleteGratitudeAsyncTask extends AsyncTask<Gratitude, Void, Void> {
-        private GratitudeDao gratitudeDao;
+        private final GratitudeDao gratitudeDao;
 
         public DeleteGratitudeAsyncTask(GratitudeDao gratitudeDao) {
             this.gratitudeDao = gratitudeDao;

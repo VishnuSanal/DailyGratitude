@@ -1,4 +1,4 @@
-package phone.vishnu.dailygratitude;
+package phone.vishnu.dailygratitude.viewmodel;
 
 import android.app.Application;
 
@@ -7,6 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+
+import phone.vishnu.dailygratitude.model.Gratitude;
+import phone.vishnu.dailygratitude.repository.GratitudeRepository;
 
 public class GratitudeViewModel extends AndroidViewModel {
 

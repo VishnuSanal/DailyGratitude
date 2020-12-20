@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/ic_daily_gratitude"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,10 +17,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".activity.AddActivity"
+            android:parentActivityName=".activity.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleTop" />
     </application>
 
